@@ -1172,6 +1172,47 @@ footer .logo {
 
 /*pop up==================================================*/
 
+/*coming soon==================================================*/
+
+.coming_soon {
+    min-height: calc(100vh - 130px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 200px 0 100px;
+    text-align: center;
+    border-bottom: 1px solid #E6E7E8;
+}
+
+.coming_soon_label {
+    margin-left: 0;
+}
+
+.coming_soon_title {
+    display: block;
+    font-weight: normal;
+    line-height: 100%;
+    margin-bottom: 30px;
+}
+
+.coming_soon_text {
+    font-size: 20px;
+    line-height: 150%;
+    color: #6D6E70;
+    margin-bottom: 48px;
+}
+
+.coming_soon_btn {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/*coming soon==================================================*/
+
 
 
 @media(max-width: 768px) {
