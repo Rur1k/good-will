@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
 import Button from "@/components/ui/Button";
 import Popup from "@/components/ui/Popup";
+import { VIEWPORT, fadeUp, imageSettle, revealFromLeft, stagger } from "@/lib/animations";
 
 const FIELDS = [
   { label: "Name", className: "name_place" },
@@ -19,34 +21,58 @@ export default function Questions() {
     <>
       <section className="questions">
         <div className="container">
-          <span className="questions_title general_title">HAVE A QUESTION?</span>
+          <motion.span
+            className="questions_title general_title"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
+            HAVE A QUESTION?
+          </motion.span>
           <div className="questions_content d-flex">
-            <div className="questions_info">
-              <h2 className="questions_title_text title_text">
+            <motion.div
+              className="questions_info"
+              variants={stagger(0.2)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT}
+            >
+              <motion.h2 className="questions_title_text title_text" variants={fadeUp}>
                 We are always in touch and ready to provide you with advice, assistance <br /> and support
-              </h2>
-              <div className="questions_img">
-                <img src="/img/questios_image.jpg" alt="" />
-              </div>
-            </div>
-            <form action="#" className="form" onSubmit={(event) => event.preventDefault()}>
+              </motion.h2>
+              <motion.div className="questions_img" variants={revealFromLeft}>
+                <motion.img src="/img/questios_image.jpg" alt="" variants={imageSettle} />
+              </motion.div>
+            </motion.div>
+            <motion.form
+              action="#"
+              className="form"
+              onSubmit={(event) => event.preventDefault()}
+              variants={stagger(0.1, 0.2)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT}
+            >
               {FIELDS.map((field) => (
-                <div key={field.label} className="input_group">
+                <motion.div key={field.label} className="input_group" variants={fadeUp}>
                   <input type="text" required className={`common ${field.className}`} />
                   <label className="input_valeu">{field.label}</label>
-                </div>
+                </motion.div>
               ))}
-              <Button
-                href="#"
-                className="questions_info_text_btn"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setPopupOpen(true);
-                }}
-              >
-                Send
-              </Button>
-            </form>
+              <motion.div variants={fadeUp}>
+                <Button
+                  href="#"
+                  className="questions_info_text_btn"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setPopupOpen(true);
+                  }}
+                >
+                  Send
+                </Button>
+              </motion.div>
+            </motion.form>
           </div>
         </div>
       </section>

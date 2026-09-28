@@ -1,3 +1,7 @@
+import * as motion from "motion/react-client";
+import type { Variants } from "motion/react";
+import { VIEWPORT, fadeUp, fadeUpDelayed } from "@/lib/animations";
+
 const VALUES = [
   {
     title: "Legality",
@@ -19,20 +23,43 @@ const VALUES = [
   },
 ];
 
+// Icon pops in on a spring after its row has started to rise
+const iconVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.4 },
+  visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 260, damping: 14, delay: 0.3 } },
+};
+
 export default function Values() {
   return (
     <section className="values">
       <div className="container">
-        <span className="general_title values_title">values</span>
+        <motion.span
+          className="general_title values_title"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
+          values
+        </motion.span>
         <div className="values_group">
+          {/* Each row triggers on its own (rows are far apart on mobile); the delay staggers them on desktop */}
           {VALUES.map((item, index) => (
-            <div key={item.title} id={`values_item_${index + 1}`} className="values_item d-flex">
-              <div className={item.animateClassName}>
+            <motion.div
+              key={item.title}
+              id={`values_item_${index + 1}`}
+              className="values_item d-flex"
+              variants={fadeUpDelayed(index * 0.15)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT}
+            >
+              <motion.div className={item.animateClassName} variants={iconVariants}>
                 <img src={item.image} alt="" />
-              </div>
+              </motion.div>
               <h2 className="values_item_title">{item.title}</h2>
               <p className="values_text">{item.text}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

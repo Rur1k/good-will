@@ -534,7 +534,42 @@ section {}
 /*main==================================================*/
 .main {
     position: relative;
+    overflow: hidden;
+}
 
+.main_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/img/main-bg.png) no-repeat center;
+    background-size: cover;
+}
+
+.offer_logo_mask {
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+
+.offer_logo_mask .offer_logo {
+    display: block;
+    margin-bottom: 0;
+}
+
+.offer_word {
+    display: inline-block;
+}
+
+.offer_word:not(:last-child) {
+    margin-right: 0.25em;
+}
+
+.offer_line {
+    width: 120px;
+    height: 1px;
+    margin: 30px auto 0;
+    background: #DDBC62;
 }
 
 .ovarlay {
@@ -1095,13 +1130,11 @@ footer .logo {
 /*footer==================================================*/
 
 /*pop up==================================================*/
+/* Popup enter/exit is animated by Motion (ui/Popup.tsx), so no CSS transitions here */
 .pop_up_wrapper.active .pop_up {
     opacity: 1;
     visibility: visible;
     overflow: visible;
-    -webkit-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
 }
 
 .pop_up_wrapper.active .pop_up_overlay {
@@ -1122,9 +1155,6 @@ footer .logo {
     background: #fafafa;
     overflow: hidden;
     z-index: 50;
-    -webkit-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
 
     padding: 80px 133px 100px;
 
@@ -1314,7 +1344,7 @@ footer .logo {
         padding-bottom: 266px;
     }
 
-    .offer_logo {
+    .offer_logo_mask {
         margin-bottom: 30px;
     }
 

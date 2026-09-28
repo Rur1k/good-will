@@ -1,4 +1,6 @@
 import Link from "next/link";
+import * as motion from "motion/react-client";
+import { VIEWPORT, fadeUp, stagger } from "@/lib/animations";
 
 const FOOT_LINKS = [
   { href: "/who-we-are", label: "WHO WE ARE" },
@@ -10,8 +12,14 @@ const FOOT_LINKS = [
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="fot_nav d-flex">
+      <motion.div
+        className="container"
+        variants={stagger(0.15)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT}
+      >
+        <motion.div className="fot_nav d-flex" variants={fadeUp}>
           <Link href="/" className="foot_logo logo">
             <img src="/img/logo.svg" alt="Goodwil capital" />
           </Link>
@@ -45,9 +53,11 @@ export default function Footer() {
               ))}
             </div>
           </ul>
-        </div>
-        <div className="copy">© 2021 Goodwill Capital LP</div>
-      </div>
+        </motion.div>
+        <motion.div className="copy" variants={fadeUp}>
+          © 2021 Goodwill Capital LP
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }

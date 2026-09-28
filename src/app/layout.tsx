@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/normalize.css";
 import "../styles/main.css";
+import MotionProvider from "@/components/MotionProvider";
 
 export const metadata: Metadata = {
   title: "Goodwill | Main",
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }
